@@ -1,0 +1,11 @@
+.truncate {
+  max-width: 180px; /* Adjust the value as per your needs */
+  overflow-x: scroll;
+  max-width: 100%;
+  -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.truncate::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome and Safari */
+}

@@ -1,1 +1,12 @@
-<p>user-list works!</p>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col truncate h5 text-danger">ID</div>
+        <div class="col truncate h5">Name</div>
+        <div class="col truncate h5">Email</div>
+        <div class="col truncate h5">Last Login Time</div>
+        <div class="col truncate h5">Registration Time</div>
+        <div class="col truncate h5">Status</div>
+        <div class="col truncate h5">Action</div> <!-- Empty column for the Change Status button -->
+    </div>
+    <app-user *ngFor="let user of users; let index = index" [user]="user" [id]="index"></app-user>
+</div>

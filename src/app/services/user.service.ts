@@ -5,16 +5,10 @@ import { API_URL } from '../constants';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class UserService {
   constructor(private readonly httpClient: HttpClient) {}
 
-  userRegister(data: any) {
-    return this.httpClient.post(API_URL.USER_URL, data);
-  }
-
-  userLogin(data: any) {
-    return this.httpClient.post(API_URL.LOGIN_URL, data, {
-      withCredentials: true,
-    });
+  getAll() {
+    return this.httpClient.get(API_URL.USER_URL, { withCredentials: true });
   }
 }
