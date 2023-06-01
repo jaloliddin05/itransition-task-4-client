@@ -8,7 +8,11 @@ import { API_URL } from '../constantas';
 export class AuthService {
   constructor(private readonly httpClient: HttpClient) {}
 
-  userRegister(userData: any) {
-    return this.httpClient.post(API_URL.USER_URL, userData);
+  userRegister(data: any) {
+    return this.httpClient.post(API_URL.USER_URL, data);
+  }
+
+  userLogin(data: any) {
+    return this.httpClient.post(API_URL.LOGIN_URL, data);
   }
 }

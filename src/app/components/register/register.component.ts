@@ -21,8 +21,9 @@ export class RegisterComponent implements OnInit {
     this.registrationForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required]],
     });
+    console.log(this.registrationForm.get('password')?.getError);
   }
 
   onSubmit(): void {
@@ -37,5 +38,9 @@ export class RegisterComponent implements OnInit {
         console.log(error);
       },
     });
+  }
+
+  navigateToLogin() {
+    this.router.navigate(['login']);
   }
 }
