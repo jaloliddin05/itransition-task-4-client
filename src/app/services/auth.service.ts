@@ -17,4 +17,14 @@ export class AuthService {
       withCredentials: true,
     });
   }
+
+  userLogout() {
+    return this.httpClient.post(
+      API_URL.LOGOUT_URL,
+      {},
+      {
+        withCredentials: true,
+      }
+    );
+  }
 }

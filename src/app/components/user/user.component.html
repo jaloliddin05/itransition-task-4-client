@@ -1,5 +1,7 @@
 <div class="row mt-3">
-    <div class="col truncate">{{ id + 1 }}</div>
+    <div class="col truncate"><input type="checkbox"
+            (change)="checkbox.checked ? addToSelects(user.id):removeFromSelects(user.id)" [checked]="checked"
+            #checkbox>{{ id + 1 }}</div>
     <div class="col truncate">{{ user.name }}</div>
     <div class="col truncate">{{ user.email }}</div>
     <div class="col truncate">{{ dateParser(user.lastLoginTime) }}</div>
@@ -7,8 +9,11 @@
     <div class="col truncate" [class.text-success]="user.status" [class.text-danger]="!user.status">{{ user.status ?
         "Active":"Blocked" }}</div>
     <div class="col truncate">
-        <button class="btn btn-primary w-50" [class.bg-danger]="user.status" [class.bg-success]="!user.status"
-            (click)="changeStatus()">{{user.status ?
+        <button class="btn btn-primary w-75" [class.bg-danger]="user.status" [class.bg-success]="!user.status"
+            (click)="changeUserStatus(user.id,!user.status)">{{user.status ?
             "Block":"UnBlock"}}</button>
+    </div>
+    <div class="col truncate">
+        <button class="btn btn-danger w-50" (click)="deleteUser(user.id)">Delete</button>
     </div>
 </div>

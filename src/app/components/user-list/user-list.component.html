@@ -1,4 +1,22 @@
 <div class="container">
+    <div class="mt-5 d-flex align-items-center justify-content-between">
+        <div class="">
+            <label>
+                <input type="checkbox" [(ngModel)]="allCheckBox" #selectAllCheckBox
+                    (change)="selectAll(selectAllCheckBox.checked)">
+                All
+            </label>
+        </div>
+        <div class="">
+            <button [disabled]="selectedUsers.length == 0" class="btn btn-success mx-3"
+                (click)="changeUsersStatus(true)">UnBlock</button>
+            <button [disabled]="selectedUsers.length == 0" class="btn btn-warning mx-3"
+                (click)="changeUsersStatus(false)">Block</button>
+            <button [disabled]="selectedUsers.length == 0" class="btn btn-danger mx-3"
+                (click)="deleteUsers()">Delete</button>
+            <button class="btn btn-info mx-3" (click)="logout()">Logout</button>
+        </div>
+    </div>
     <div class="row mt-5">
         <div class="col truncate h5 text-danger">ID</div>
         <div class="col truncate h5">Name</div>
@@ -6,7 +24,10 @@
         <div class="col truncate h5">Last Login Time</div>
         <div class="col truncate h5">Registration Time</div>
         <div class="col truncate h5">Status</div>
-        <div class="col truncate h5">Action</div> <!-- Empty column for the Change Status button -->
+        <div class="col truncate h5">Action</div>
+        <div class="col truncate h5">Action</div>
     </div>
-    <app-user *ngFor="let user of users; let index = index" [user]="user" [id]="index"></app-user>
+    <app-user *ngFor="let user of users; let index = index" [user]="user" [users]="users" [id]="index"
+        [checked]="isSelected(user.id)" (addToSelect)="addToSelect($event)"
+        (removeFromSelect)="removeFromSelected($event)"></app-user>
 </div>

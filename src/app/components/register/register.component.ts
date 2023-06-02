@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   registrationForm!: FormGroup;
+  error: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,10 +32,17 @@ export class RegisterComponent implements OnInit {
     }
     this.authService.userRegister(this.registrationForm.value).subscribe({
       next: (response) => {
+        console.log(response);
+
         this.router.navigate(['login']);
       },
-      error: (error) => {
-        console.log(error);
+      error: (err) => {
+        console.log(err);
+        this.error = err.error;
+        setTimeout(() => {
+          this.error = {};
+          this.registrationForm.reset();
+        }, 2000);
       },
     });
   }

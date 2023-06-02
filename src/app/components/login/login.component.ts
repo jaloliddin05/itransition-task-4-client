@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   loginForm!: FormGroup;
+  error: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,8 +32,12 @@ export class LoginComponent {
       next: (response) => {
         this.router.navigate(['user-list']);
       },
-      error: (error) => {
-        console.log(error);
+      error: (err) => {
+        this.error = err.error;
+        setTimeout(() => {
+          this.error = {};
+          this.loginForm.reset();
+        }, 2000);
       },
     });
   }
