@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-user',
@@ -18,10 +17,9 @@ export class UserComponent {
   @Output() removeFromSelect = new EventEmitter<string>();
   constructor(
     private readonly userService: UserService,
-    private readonly router: Router,
-    private readonly cookieService: CookieService
+    private readonly router: Router
   ) {
-    this.userId = this.cookieService.get('userId');
+    this.userId = localStorage.getItem('userId');
   }
 
   deleteUser(id: string) {

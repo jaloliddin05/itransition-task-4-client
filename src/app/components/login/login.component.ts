@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
     }
     this.authService.userLogin(this.loginForm.value).subscribe({
       next: (res: any) => {
+        localStorage.setItem('userId', res.userId);
         this.router.navigate(['user-list']);
       },
       error: (err) => {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
@@ -17,7 +16,6 @@ export class UserListComponent implements OnInit {
   constructor(
     private readonly userService: UserService,
     private readonly authService: AuthService,
-    private readonly cookieService: CookieService,
     private readonly router: Router
   ) {}
 
@@ -36,7 +34,7 @@ export class UserListComponent implements OnInit {
 
   selectAll(bool: boolean) {
     if (bool) {
-      const userId = this.cookieService.get('userId');
+      const userId = localStorage.getItem('userId');
       this.users?.forEach((u: any) => {
         if (userId != u.id) {
           this.selectedUsers.push(u.id);
@@ -66,8 +64,8 @@ export class UserListComponent implements OnInit {
         this.users = this.users.filter(
           (u: any) => !this.selectedUsers.includes(u.id)
         );
-        const userId = this.cookieService.get('userId');
-        if (this.isSelected(userId)) {
+        const userId = localStorage.getItem('userId');
+        if (this.isSelected(userId as string)) {
           this.router.navigate(['login']);
         }
         this.selectedUsers = [];
