@@ -1,4 +1,5 @@
-const API_URL = 'https://task-4-x6mm.onrender.com';
+import { environment } from '../../environment';
+const API_URL = environment.apiUrl;
 const LOGIN_URL = `${API_URL}/auth/login`;
 const LOGOUT_URL = `${API_URL}/auth/logout`;
 const USER_URL = `${API_URL}/user`;
